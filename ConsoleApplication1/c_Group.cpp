@@ -85,6 +85,7 @@ void c_Group::loadFromFile()
 				str = "NULL";
 			}
 		}
+		std::cout << "Done\n";
 	}
 	else {
 		std::cout << "Cannot read file" << "\n";
