@@ -14,6 +14,18 @@ c_Student::c_Student(std::string name)
 	this->size = 0;
 }
 
+c_Student::c_Student(c_Student* tmp)
+{
+	this->name = tmp->name;
+	this->size = tmp->size;
+	this->marks = new int[this->size];
+	for (size_t i = 0; i < this->size; i++)
+	{
+		this->marks[i] = tmp->marks[i];
+	}
+	tmp = nullptr;
+}
+
 int c_Student::getAvagare()
 {
 	int result = 0;

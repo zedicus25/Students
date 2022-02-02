@@ -1,11 +1,10 @@
 ﻿#include <iostream>
-#include "c_Student.h"
+#include "c_Group.h"
 int main()
 {
-    c_Student* st = new c_Student("JON");
-    st->addMark(12);
-    st->addMark(12);
-    st->addMark(12);
-    st->addMark(12);
-    std::cout << st->info() << "\n";
+	c_Group* gr = new c_Group();
+	
+	gr->loadFromFile();
+	gr->showList();
+	delete gr;
 }

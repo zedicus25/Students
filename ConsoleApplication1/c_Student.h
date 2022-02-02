@@ -10,6 +10,9 @@ private:
 public:
 	c_Student();
 	c_Student(std::string name);
+	c_Student(c_Student* tmp);
+
+	
 
 	inline std::string getName() const{
 		return this->name;
