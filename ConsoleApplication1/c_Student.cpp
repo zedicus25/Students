@@ -39,32 +39,48 @@ int c_Student::getAvagare()
 
 void c_Student::addMark(int mark)
 {
-	int* tmp = new int[this->size];
-	for (int i = 0; i < this->size; i++)
+	try
 	{
-		tmp[i] = this->marks[i];
-	}
+		if (mark > 0 && mark < 13) {
+			int* tmp = new int[this->size];
+			for (int i = 0; i < this->size; i++)
+			{
+				tmp[i] = this->marks[i];
+			}
 
-	delete[] this->marks;
-	this->marks = new int[this->size + 1];
-	for (int i = 0; i < this->size; i++)
-	{
-		this->marks[i] = tmp[i];
+			delete[] this->marks;
+			this->marks = new int[this->size + 1];
+			for (int i = 0; i < this->size; i++)
+			{
+				this->marks[i] = tmp[i];
+			}
+			this->marks[size] = mark;
+			this->size++;
+			delete[] tmp;
+		}
+		else {
+			throw std::string("Mark is negative or greater 12\n");
+		}
 	}
-	this->marks[size] = mark;
-	this->size++;
-	delete[] tmp;
+	catch (std::string ex)
+	{
+		std::cout << "Error " << ex;
+	}
+	
 }
 
 std::string c_Student::info()
 {
 	std::string res;
 	res += this->getName();
-	res += ":";
+	res += ": ";
 	for (int i = 0; i < this->size; i++)
 	{
 		res += std::to_string(this->marks[i]);
-		res += ",";
+		res += ", ";
 	}
+	res = res.substr(0, res.size() - 1);
 	return res;
 }
+
+

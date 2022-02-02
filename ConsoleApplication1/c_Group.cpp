@@ -64,25 +64,31 @@ void c_Group::loadFromFile()
 {
 	std::ifstream in("Data.txt");
 	std::string str;
+	std::string sub = ",";
 	if (in.is_open()) {
 		while (!in.eof())
 		{
-			in >> str;
-			if (str != "NULL")
+			char ch;
+			while (in.get(ch))
 			{
+				if (ch == '\n')
+					break;
+				str += ch;
+			}
+			if (str.size() > 1) {
+
 				int pos = 0;
-				pos = str.find(':');
+				pos = str.find(": ");
 				std::string name = str.substr(0, pos);
 				str.erase(0, pos + 1);
 				c_Student* st = new c_Student(name);
-				while ((pos = str.find(',')) != std::string::npos)
+				while ((pos = str.find(sub)) != std::string::npos)
 				{
 					st->addMark(std::stoi(str.substr(0, pos)));
-					str.erase(0, pos + 1);
+					str.erase(0, pos + sub.length());
 				}
 				this->addToList(*st);
 				delete st;
-				str = "NULL";
 			}
 		}
 		std::cout << "Done\n";

@@ -61,5 +61,5 @@ int main()
 
 		}
 	} while (userInput != 0);
-	
+	delete gr;
 }
